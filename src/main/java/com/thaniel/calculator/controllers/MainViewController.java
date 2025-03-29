@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -116,6 +115,9 @@ public class MainViewController {
         if (graphController == null) {
             loadFXMLToPane("/com/thaniel/calculator/graph-pane.fxml", graphPane);
         }
+
+        Scene scene = graphPane.getScene();
+        graphController.setScene(scene);
 
         switchCalculatorMode(graphPane);
         toggleMenu();

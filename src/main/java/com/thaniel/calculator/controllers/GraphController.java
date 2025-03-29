@@ -6,6 +6,7 @@ import com.thaniel.calculator.utils.GraphDrawer;
 import com.thaniel.calculator.utils.Messages;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -21,7 +22,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import org.mariuszgromada.math.mxparser.License;
 
 
@@ -52,23 +52,15 @@ public class GraphController {
 
     @FXML
     public void initialize() {
-        if (graphCanvas == null) {
+        if (graphContainer == null ) {
             System.err.println("Error: FXML in GraphController was not initialized correctly.");
         } else {
             System.out.println("Info: FXML in GraphController was initialized correctly.");
 
             License.iConfirmNonCommercialUse("Thaniel");
             setupMouseControls();
+
             graph = new Graph(1.0, 0, 0, graphCanvas.getWidth(), graphCanvas.getHeight());
-
-            // Ajustar el tamaño del Canvas al AnchorPane
-            graphCanvas.widthProperty().bind(graphContainer.widthProperty());
-            graphCanvas.heightProperty().bind(graphContainer.heightProperty());
-
-            // Redibujar el gráfico cada vez que el tamaño cambie
-            graphCanvas.widthProperty().addListener((obs, oldVal, newVal) -> drawGraph());
-            graphCanvas.heightProperty().addListener((obs, oldVal, newVal) -> drawGraph());
-
 
             drawGraph();
             setButtonTooltips();
@@ -88,10 +80,10 @@ public class GraphController {
         drawGraph();
     }
 
-    public void onClickAddFunction(){
+    public void onClickAddFunction() {
         String expression = functionTextField.getText().trim();
 
-        if (!expression.isEmpty()){
+        if (!expression.isEmpty()) {
             addFunction(expression);
         }
     }
@@ -104,7 +96,7 @@ public class GraphController {
         }
     }
 
-    private void addFunction(String expression){
+    private void addFunction(String expression) {
         Color color = getRandomLightColor();
         Function function = new Function(expression, true, color);
         graph.addFunction(function);
@@ -169,8 +161,6 @@ public class GraphController {
     }
 
     private void drawGraph() {
-        graph.setWidth(graphCanvas.getWidth());
-        graph.setHeight(graphCanvas.getHeight());
         GraphDrawer.getInstance().drawGraph(graphCanvas, graph);
     }
 
@@ -190,7 +180,7 @@ public class GraphController {
         return textField;
     }
 
-    private ColorPicker createColorPicker(Function function){
+    private ColorPicker createColorPicker(Function function) {
         ColorPicker colorPicker = new ColorPicker(function.getColor());
         colorPicker.setMaxHeight(Double.MAX_VALUE);
         colorPicker.setMaxWidth(34);
@@ -214,7 +204,7 @@ public class GraphController {
         return colorPicker;
     }
 
-    private Button createVisibilityButton(Function function){
+    private Button createVisibilityButton(Function function) {
         ImageView visibilityImageView = createImageView(HIDDEN_IMAGE_PATH);
 
         Button button = new Button();
@@ -235,7 +225,7 @@ public class GraphController {
         return button;
     }
 
-    private Button createDeleteButton(Function function, HBox functionBox){
+    private Button createDeleteButton(Function function, HBox functionBox) {
         ImageView deleteImageView = createImageView(DELETE_IMAGE_PATH);
 
         Button button = new Button();
@@ -255,7 +245,7 @@ public class GraphController {
         return button;
     }
 
-    private ImageView createImageView(String imagePath){
+    private ImageView createImageView(String imagePath) {
         ImageView imageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResource(imagePath)).toExternalForm()));
         imageView.setFitWidth(24);
         imageView.setFitHeight(24);
@@ -273,5 +263,22 @@ public class GraphController {
     private void setButtonTooltips() {
         centerGraphButton.setTooltip(new Tooltip(Messages.get("tooltip.button.centerGraph")));
         addFunctionButton.setTooltip(new Tooltip(Messages.get("tooltip.button.addFunction")));
+    }
+
+    public void setScene(Scene scene) {
+        scene.widthProperty().addListener((obs, oldVal, newVal) -> updateGraph(scene));
+        scene.heightProperty().addListener((obs, oldVal, newVal) -> updateGraph(scene));
+    }
+
+    private void updateGraph(Scene scene) {
+        double width = scene.getWidth() - functionListContainer.getWidth();
+        double height =  scene.getHeight();
+
+        graph.setWidth(width);
+        graph.setHeight(height);
+        graphCanvas.setWidth(width);
+        graphCanvas.setHeight(height);
+
+        GraphDrawer.getInstance().drawGraph(graphCanvas, graph);
     }
 }
