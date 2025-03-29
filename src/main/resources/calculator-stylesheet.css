@@ -1,0 +1,44 @@
+.background-dark {
+    -fx-background-color: #1f1e24;
+}
+
+.background-grey-dark {
+    -fx-background-color: #333137;
+    -fx-text-fill: white;
+}
+
+.number-button {
+    -fx-background-color: #3d3b3f;
+    -fx-font-size: 20px;
+    -fx-font-color: #edebed;
+}
+
+.number-button:hover {
+    -fx-background-color: #545256;
+}
+
+.operation-button {
+    -fx-background-color: #333137;
+    -fx-font-size: 20px;
+}
+
+.operation-button:hover {
+    -fx-background-color: #4a484d;
+}
+
+.equals-button {
+    -fx-background-color: #43bbfb;
+}
+
+.equals-button:hover {
+    -fx-background-color: #707070;
+}
+
+.menu-button {
+    -fx-background-color: #1f1e24;
+    -fx-font-size: 15px;
+}
+
+.menu-button:hover {
+    -fx-background-color: #3d3b3f;
+}

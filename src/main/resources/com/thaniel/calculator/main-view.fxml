@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane styleClass="background-dark" stylesheets="@../../../calculator-stylesheet.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thaniel.calculator.controllers.MainViewController">
+
+    <HBox AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0.0">
+        <children>
+            <StackPane fx:id="basicCalculatorPane" HBox.hgrow="ALWAYS" />
+            <StackPane fx:id="graphPane" HBox.hgrow="ALWAYS" />
+            <StackPane fx:id="advancedCalculatorPane" HBox.hgrow="ALWAYS" />
+            <StackPane fx:id="programmerPane" HBox.hgrow="ALWAYS" />
+            <StackPane fx:id="historicalPane" HBox.hgrow="ALWAYS" />
+        </children>
+    </HBox>
+
+    <Button fx:id="menuButton" layoutX="10" layoutY="10" onAction="#toggleMenu" styleClass="menu-button" stylesheets="@../../../calculator-stylesheet.css" text="☰" textFill="WHITE">
+        <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        </padding>
+    </Button>
+
+    <VBox fx:id="menuPane" prefWidth="200.0" style="-fx-background-color: #333;" styleClass="background-dark" stylesheets="@../../../calculator-stylesheet.css" translateX="-200" AnchorPane.bottomAnchor="0" AnchorPane.topAnchor="50" VBox.vgrow="ALWAYS">
+      <Button fx:id="basicModeButton" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleBasicMode" styleClass="menu-button" stylesheets="@../../../calculator-stylesheet.css" textFill="WHITE">
+         <padding>
+            <Insets bottom="15.0" left="10.0" right="25.0" top="15.0" />
+         </padding>
+          <graphic>
+              <ImageView fitHeight="20.0" fitWidth="20.0">
+                  <image>
+                      <Image url="@../../../assets/basic-calculator.png" />
+                  </image>
+              </ImageView>
+          </graphic>
+      </Button>
+      <Button fx:id="advancedModeButton" alignment="TOP_LEFT" layoutX="10.0" layoutY="214.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleAdvancedMode" styleClass="menu-button" stylesheets="@../../../calculator-stylesheet.css" textFill="WHITE">
+         <padding>
+            <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
+         </padding>
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../../../assets/advanced-calculator.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="graphModeButton" alignment="TOP_LEFT" layoutX="10.0" layoutY="322.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleGraphMode" styleClass="menu-button" stylesheets="@../../../calculator-stylesheet.css" textFill="WHITE">
+         <padding>
+            <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
+         </padding>
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../../../assets/graph-calculator.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="programmerModeButton" alignment="TOP_LEFT" layoutX="10.0" layoutY="268.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleProgrammerMode" styleClass="menu-button" stylesheets="@../../../calculator-stylesheet.css" textFill="WHITE">
+         <padding>
+            <Insets bottom="15.0" left="10.0" right="10.0" top="15.0" />
+         </padding>
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../../../assets/programmer-calculator.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+    </VBox>
+
+</AnchorPane>
