@@ -72,18 +72,23 @@ public abstract class CalculatorController {
     }
 
     public void onKeyPressed(KeyEvent keyEvent) {
-        KeyCode keyCode = keyEvent.getCode();
+        if(keyEvent != null){
+            KeyCode keyCode = keyEvent.getCode();
 
-        String text = (keyCode == KeyCode.DECIMAL) ? "," : keyEvent.getText();
+            String text = (keyCode == KeyCode.DECIMAL) ? "," : keyEvent.getText();
 
-        switch (keyCode) {
-            case ADD -> handleOperation("+");
-            case SUBTRACT -> handleOperation("-");
-            case MULTIPLY -> handleOperation("×");
-            case DIVIDE -> handleOperation("÷");
-            case ENTER -> handleCalculate();
-            case BACK_SPACE -> onClickDelete(null);
-            default -> insertNumberToResult(text);
+            System.out.println(keyCode);
+
+            switch (keyCode) {
+                case ADD -> handleOperation("+");
+                case SUBTRACT -> handleOperation("-");
+                case MULTIPLY -> handleOperation("×");
+                case DIVIDE -> handleOperation("÷");
+                case ENTER -> handleCalculate();
+                case BACK_SPACE -> onClickDelete(null);
+                case DELETE -> onClickClear(null);
+                default -> insertNumberToResult(text);
+            }
         }
     }
 

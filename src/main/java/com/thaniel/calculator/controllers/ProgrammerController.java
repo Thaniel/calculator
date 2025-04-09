@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public class ProgrammerController {
     @FXML
-    protected Label expressionLabel, resultLabel;
+    private Label expressionLabel, resultLabel;
 
     @FXML
     private Label decimalLabel, binaryLabel, octalLabel, hexadecimalLabel;
@@ -122,18 +122,21 @@ public class ProgrammerController {
     }
 
     public void onKeyPressed(KeyEvent keyEvent) {
-        KeyCode keyCode = keyEvent.getCode();
-        String text = keyEvent.getText();
+        if(keyEvent != null){
+            KeyCode keyCode = keyEvent.getCode();
+            String text = keyEvent.getText();
 
-        switch (keyCode) {
-            case ADD -> handleOperation("+");
-            case SUBTRACT -> handleOperation("-");
-            case MULTIPLY -> handleOperation("×");
-            case DIVIDE -> handleOperation("÷");
-            case ENTER -> handleCalculate();
-            case BACK_SPACE -> onClickDelete(null);
-            case A, B, C, D, E, F -> insertDigit(keyCode.getName());
-            default -> insertDigit(text);
+            switch (keyCode) {
+                case ADD -> handleOperation("+");
+                case SUBTRACT -> handleOperation("-");
+                case MULTIPLY -> handleOperation("×");
+                case DIVIDE -> handleOperation("÷");
+                case ENTER -> handleCalculate();
+                case BACK_SPACE -> onClickDelete(null);
+                case DELETE -> onClickClear(null);
+                case A, B, C, D, E, F -> insertDigit(keyCode.getName());
+                default -> insertDigit(text);
+            }
         }
     }
 
@@ -143,7 +146,7 @@ public class ProgrammerController {
 
         if (operation == null) {
             resultLabel.setText(num1);
-        } else{
+        } else {
             Long longNumber2 = convertNumberToLong(num2, previousMode);
             num2 = convertLongToString(longNumber2, mode);
 

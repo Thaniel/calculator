@@ -138,11 +138,11 @@ public class AdvancedCalculatorController extends CalculatorController {
     private double factorial(double x) {
         double result = 0;
 
-        if (x >= 0){
+        if (x >= 0) {
             if (x == Math.floor(x)) {
                 result = factorialInt((int) x);
             } else {
-               result = Gamma.gamma(x + 1);
+                result = Gamma.gamma(x + 1);
             }
         }
 
