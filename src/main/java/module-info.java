@@ -5,6 +5,7 @@ module com.thaniel.calculator {
     requires org.kordamp.bootstrapfx.core;
     requires commons.math3;
     requires MathParser.org.mXparser;
+    requires java.desktop;
 
     opens com.thaniel.calculator to javafx.fxml;
     exports com.thaniel.calculator;

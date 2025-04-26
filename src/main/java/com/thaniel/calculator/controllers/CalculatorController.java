@@ -1,6 +1,7 @@
 package com.thaniel.calculator.controllers;
 
 
+import com.thaniel.calculator.interfaces.KeyPressable;
 import com.thaniel.calculator.utils.Utils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,7 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public abstract class CalculatorController {
+public abstract class CalculatorController implements KeyPressable {
     @FXML
     protected Label expressionLabel;
     @FXML
@@ -71,8 +72,11 @@ public abstract class CalculatorController {
         restartValues();
     }
 
+    @Override
     public void onKeyPressed(KeyEvent keyEvent) {
         if(keyEvent != null){
+            System.out.println("Key pressed: " + keyEvent.getCode() + " (" + keyEvent.getText() + ")");
+
             KeyCode keyCode = keyEvent.getCode();
 
             String text = (keyCode == KeyCode.DECIMAL) ? "," : keyEvent.getText();

@@ -1,13 +1,16 @@
 package com.thaniel.calculator.controllers;
 
+import com.thaniel.calculator.interfaces.KeyPressable;
 import com.thaniel.calculator.utils.Messages;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -50,12 +53,30 @@ public class MainViewController {
     private StackPane programmerPane;
     private ProgrammerController programmerController;
 
+    private KeyPressable activeController;
+
     @FXML
     public void initialize() {
         loadFXMLToPane("/com/thaniel/calculator/historical-pane.fxml", historicalPane);
         loadFXMLToPane("/com/thaniel/calculator/basic-calculator-pane.fxml", basicCalculatorPane);
         switchCalculatorMode(basicCalculatorPane);
         setButtonTooltips();
+
+        Platform.runLater(this::setupSceneKeyHandler);
+    }
+
+    private void setupSceneKeyHandler() {
+        Scene scene = basicCalculatorPane.getScene();
+        if (scene != null) {
+            scene.addEventFilter(KeyEvent.KEY_PRESSED, this::handleKeyPressed);
+        }
+    }
+
+    private void handleKeyPressed(KeyEvent event) {
+        if (activeController != null) {
+            event.consume();
+            activeController.onKeyPressed(event);
+        }
     }
 
     private void loadFXMLToPane(String fxmlPath, StackPane pane) {
@@ -98,7 +119,7 @@ public class MainViewController {
     @FXML
     private void handleBasicMode() {
         switchCalculatorMode(basicCalculatorPane);
-        basicCalculatorController.setupListeners();
+        //basicCalculatorController.setupListeners();
         toggleMenu();
     }
 
@@ -109,7 +130,7 @@ public class MainViewController {
         }
 
         switchCalculatorMode(advancedCalculatorPane);
-        advancedCalculatorController.setupListeners();
+        //advancedCalculatorController.setupListeners();
         toggleMenu();
     }
 
@@ -123,6 +144,7 @@ public class MainViewController {
         graphController.setScene(scene);
 
         switchCalculatorMode(graphPane);
+        activeController = null;
         toggleMenu();
 
     }
@@ -134,7 +156,7 @@ public class MainViewController {
         }
 
         switchCalculatorMode(programmerPane);
-        programmerController.setupListeners();
+        //programmerController.setupListeners();
         toggleMenu();
     }
 
@@ -159,6 +181,20 @@ public class MainViewController {
 
         historicalPane.setVisible(modeToShow == basicCalculatorPane || modeToShow == advancedCalculatorPane || modeToShow == programmerPane);
         historicalPane.setManaged(modeToShow == basicCalculatorPane || modeToShow == advancedCalculatorPane || modeToShow == programmerPane);
+
+        setActiveController(modeToShow);
+    }
+
+    private void setActiveController(StackPane pane){
+        if (pane == basicCalculatorPane) {
+            activeController = basicCalculatorController;
+        } else if (pane == advancedCalculatorPane) {
+            activeController = advancedCalculatorController;
+        } else if (pane == programmerPane) {
+            activeController = programmerController;
+        } else {
+            activeController = null;
+        }
     }
 
     private void setButtonTooltips() {
