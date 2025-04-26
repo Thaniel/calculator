@@ -3,13 +3,16 @@ package com.thaniel.calculator.controllers;
 
 import com.thaniel.calculator.model.NumberMode;
 import com.thaniel.calculator.utils.Utils;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
@@ -18,6 +21,9 @@ import java.util.Objects;
 
 
 public class ProgrammerController {
+    @FXML
+    private BorderPane mainPane;
+
     @FXML
     private Label expressionLabel, resultLabel;
 
@@ -52,6 +58,7 @@ public class ProgrammerController {
 
             updateValues();
             updateModeUI();
+            //setupListeners();
         }
     }
 
@@ -340,5 +347,15 @@ public class ProgrammerController {
 
     private static String removeSpacesAndPoints(String number) {
         return number.replaceAll("\\s|\\.", "");
+    }
+
+    public void setupListeners(){
+        Platform.runLater(() -> {
+            Scene scene = mainPane.getScene();
+            if (scene != null) {
+                scene.setOnKeyPressed(null);
+                scene.setOnKeyPressed(this::onKeyPressed);
+            }
+        });
     }
 }

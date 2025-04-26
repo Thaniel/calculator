@@ -98,6 +98,7 @@ public class MainViewController {
     @FXML
     private void handleBasicMode() {
         switchCalculatorMode(basicCalculatorPane);
+        basicCalculatorController.setupListeners();
         toggleMenu();
     }
 
@@ -108,6 +109,7 @@ public class MainViewController {
         }
 
         switchCalculatorMode(advancedCalculatorPane);
+        advancedCalculatorController.setupListeners();
         toggleMenu();
     }
 
@@ -132,6 +134,7 @@ public class MainViewController {
         }
 
         switchCalculatorMode(programmerPane);
+        programmerController.setupListeners();
         toggleMenu();
     }
 

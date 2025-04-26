@@ -1,8 +1,11 @@
 package com.thaniel.calculator.controllers;
 
 import com.thaniel.calculator.utils.Utils;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import org.apache.commons.math3.special.Gamma;
 
 import java.util.Objects;
@@ -10,12 +13,17 @@ import java.util.Objects;
 
 public class AdvancedCalculatorController extends CalculatorController {
     @FXML
+    private BorderPane mainPane;
+
+    @FXML
     @Override
     public void initialize() {
         if (expressionLabel == null || resultLabel == null) {
             System.err.println("Error: FXML in AdvancedCalculatorController was not initialized correctly.");
         } else {
             System.out.println("Info: FXML in AdvancedCalculatorController was initialized correctly.");
+
+            //setupListeners();
         }
     }
 
@@ -159,5 +167,15 @@ public class AdvancedCalculatorController extends CalculatorController {
             }
             return fact;
         }
+    }
+
+    public void setupListeners(){
+        Platform.runLater(() -> {
+            Scene scene = mainPane.getScene();
+            if (scene != null) {
+                scene.setOnKeyPressed(null);
+                scene.setOnKeyPressed(this::onKeyPressed);
+            }
+        });
     }
 }

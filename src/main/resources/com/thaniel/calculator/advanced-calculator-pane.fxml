@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0"
+<BorderPane fx:id="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0"
             styleClass="background-dark" stylesheets="@../../../calculator-stylesheet.css"
             xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.thaniel.calculator.controllers.AdvancedCalculatorController">
@@ -64,9 +64,9 @@
             </rowConstraints>
             <children>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickNumber"
-                        styleClass="number-button" stylesheets="@../../../calculator-stylesheet.css" text="7"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        mnemonicParsing="false" onMouseClicked="#onClickNumber" styleClass="number-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="7" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -75,10 +75,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308"
-                        maxWidth="1.7976931348623157E308" mnemonicParsing="false" onKeyPressed="#onKeyPressed"
-                        onMouseClicked="#onClickNumber" styleClass="number-button"
-                        stylesheets="@../../../calculator-stylesheet.css" text="0" textAlignment="CENTER"
-                        textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                        maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#onClickNumber"
+                        styleClass="number-button" stylesheets="@../../../calculator-stylesheet.css" text="0"
+                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="6">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -87,9 +86,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickNumber"
-                        styleClass="number-button" stylesheets="@../../../calculator-stylesheet.css" text="8"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        mnemonicParsing="false" onMouseClicked="#onClickNumber" styleClass="number-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="8" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -98,9 +97,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickNumber"
-                        styleClass="number-button" stylesheets="@../../../calculator-stylesheet.css" text="4"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        mnemonicParsing="false" onMouseClicked="#onClickNumber" styleClass="number-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="4" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -109,9 +108,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickNumber"
-                        styleClass="number-button" stylesheets="@../../../calculator-stylesheet.css" text="5"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        mnemonicParsing="false" onMouseClicked="#onClickNumber" styleClass="number-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="5" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -120,10 +119,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308"
-                        maxWidth="1.7976931348623157E308" mnemonicParsing="false" onKeyPressed="#onKeyPressed"
-                        onMouseClicked="#onClickNumber" styleClass="number-button"
-                        stylesheets="@../../../calculator-stylesheet.css" text="1" textAlignment="CENTER"
-                        textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#onClickNumber"
+                        styleClass="number-button" stylesheets="@../../../calculator-stylesheet.css" text="1"
+                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -132,9 +130,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickNumber"
-                        styleClass="number-button" stylesheets="@../../../calculator-stylesheet.css" text="2"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                        mnemonicParsing="false" onMouseClicked="#onClickNumber" styleClass="number-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="2" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -143,9 +141,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickNumber"
-                        styleClass="number-button" stylesheets="@../../../calculator-stylesheet.css" text="9"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                        mnemonicParsing="false" onMouseClicked="#onClickNumber" styleClass="number-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="9" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -154,9 +152,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickNumber"
-                        styleClass="number-button" stylesheets="@../../../calculator-stylesheet.css" text="6"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                        mnemonicParsing="false" onMouseClicked="#onClickNumber" styleClass="number-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="6" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -165,9 +163,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickNumber"
-                        styleClass="number-button" stylesheets="@../../../calculator-stylesheet.css" text="3"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                        mnemonicParsing="false" onMouseClicked="#onClickNumber" styleClass="number-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="3" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="5">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -176,9 +174,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickNumber"
-                        styleClass="number-button" stylesheets="@../../../calculator-stylesheet.css" text=","
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                        mnemonicParsing="false" onMouseClicked="#onClickNumber" styleClass="number-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="," textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="6">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -187,9 +185,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickDelete"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="DEL"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4">
+                        mnemonicParsing="false" onMouseClicked="#onClickDelete" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="DEL" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="4">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -198,10 +196,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" contentDisplay="TOP" maxHeight="1.7976931348623157E308"
-                        maxWidth="1.7976931348623157E308" mnemonicParsing="false" onKeyPressed="#onKeyPressed"
-                        onMouseClicked="#onClickClear" styleClass="operation-button"
-                        stylesheets="@../../../calculator-stylesheet.css" text="AC" textAlignment="CENTER"
-                        textFill="WHITE" GridPane.columnIndex="3">
+                        maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#onClickClear"
+                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="AC"
+                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -210,9 +207,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="÷"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="÷" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -221,9 +218,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="×"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="×" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -232,9 +229,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="-"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="-" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -243,9 +240,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="+"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="+" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -254,10 +251,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickCalculate"
-                        prefHeight="33.0" prefWidth="145.0" styleClass="equals-button"
-                        stylesheets="@../../../calculator-stylesheet.css" text="=" textAlignment="CENTER"
-                        GridPane.columnIndex="4" GridPane.rowIndex="6">
+                        mnemonicParsing="false" onMouseClicked="#onClickCalculate" prefHeight="33.0" prefWidth="145.0"
+                        styleClass="equals-button" stylesheets="@../../../calculator-stylesheet.css" text="="
+                        textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="6">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -266,9 +262,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="n!"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="n!" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -285,9 +281,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="tan"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="tan" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="2">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -296,9 +292,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="cos"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="cos" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="1">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -307,9 +303,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="|x|"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="|x|" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -318,9 +314,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickEuler"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="e"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        mnemonicParsing="false" onMouseClicked="#onClickEuler" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="e" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -329,9 +325,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="xʸ"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="4">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="xʸ" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.rowIndex="4">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -340,9 +336,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickPi"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="π"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        mnemonicParsing="false" onMouseClicked="#onClickPi" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="π" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -351,9 +347,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="log"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="5">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="log" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.rowIndex="5">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -362,9 +358,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="ln"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="6">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="ln" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.rowIndex="6">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -373,9 +369,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="mod"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="mod" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -384,9 +380,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="exp"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="exp" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -395,9 +391,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="10ˣ"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="10ˣ" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.rowIndex="1">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -406,9 +402,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="x²"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="2">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="x²" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.rowIndex="2">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -417,9 +413,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="√"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="3">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="√" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.rowIndex="3">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -428,9 +424,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="sin"
-                        textAlignment="CENTER" textFill="WHITE">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="sin" textAlignment="CENTER"
+                        textFill="WHITE">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>
@@ -439,9 +435,9 @@
                     </GridPane.margin>
                 </Button>
                 <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                        mnemonicParsing="false" onKeyPressed="#onKeyPressed" onMouseClicked="#onClickOperation"
-                        styleClass="operation-button" stylesheets="@../../../calculator-stylesheet.css" text="eˣ"
-                        textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        mnemonicParsing="false" onMouseClicked="#onClickOperation" styleClass="operation-button"
+                        stylesheets="@../../../calculator-stylesheet.css" text="eˣ" textAlignment="CENTER"
+                        textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <font>
                         <Font name="Arial Bold" size="18.0"/>
                     </font>

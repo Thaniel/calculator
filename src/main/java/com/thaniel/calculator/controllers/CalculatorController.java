@@ -77,8 +77,6 @@ public abstract class CalculatorController {
 
             String text = (keyCode == KeyCode.DECIMAL) ? "," : keyEvent.getText();
 
-            System.out.println(keyCode);
-
             switch (keyCode) {
                 case ADD -> handleOperation("+");
                 case SUBTRACT -> handleOperation("-");
