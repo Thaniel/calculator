@@ -3,6 +3,7 @@ package com.thaniel.calculator.controllers;
 
 import com.thaniel.calculator.interfaces.KeyPressable;
 import com.thaniel.calculator.model.NumberMode;
+import com.thaniel.calculator.utils.Messages;
 import com.thaniel.calculator.utils.Utils;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -43,6 +44,7 @@ public class ProgrammerController implements KeyPressable {
     protected String num2 = "0";
     protected String result = null;
     protected boolean equalsButtonClicked = false;
+    protected boolean errorDividingBy0 = false;
 
     @FXML
     public void initialize() {
@@ -124,7 +126,7 @@ public class ProgrammerController implements KeyPressable {
 
     @Override
     public void onKeyPressed(KeyEvent keyEvent) {
-        if(keyEvent != null){
+        if (keyEvent != null) {
             KeyCode keyCode = keyEvent.getCode();
             String text = keyEvent.getText();
 
@@ -212,6 +214,8 @@ public class ProgrammerController implements KeyPressable {
             }
 
             updateValues();
+
+            errorDividingBy0 = false;
         }
     }
 
@@ -231,10 +235,10 @@ public class ProgrammerController implements KeyPressable {
         try {
             long longNumber = convertNumberToLong(numberToConvert, mode);
 
-            decimalLabel.setText(UTILS.formatNumber(String.valueOf(longNumber), 3, "."));
-            binaryLabel.setText(UTILS.formatNumber(Long.toBinaryString(longNumber), 4, " "));
-            hexadecimalLabel.setText(UTILS.formatNumber(Long.toHexString(longNumber).toUpperCase(), 4, " "));
-            octalLabel.setText(UTILS.formatNumber(Long.toOctalString(longNumber), 3, " "));
+            decimalLabel.setText(UTILS.formatNumberWithSpaces(String.valueOf(longNumber), 3, "."));
+            binaryLabel.setText(UTILS.formatNumberWithSpaces(Long.toBinaryString(longNumber), 4, " "));
+            hexadecimalLabel.setText(UTILS.formatNumberWithSpaces(Long.toHexString(longNumber).toUpperCase(), 4, " "));
+            octalLabel.setText(UTILS.formatNumberWithSpaces(Long.toOctalString(longNumber), 3, " "));
         } catch (NumberFormatException e) {
             System.err.println("Error: Invalid number format (" + numberToConvert + ")");
         }
@@ -258,7 +262,7 @@ public class ProgrammerController implements KeyPressable {
     }*/
 
     protected void handleOperation(String operator) {
-        if (operation == null || equalsButtonClicked) {
+        if ((operation == null || equalsButtonClicked) && !errorDividingBy0) {
             operation = operator;
 
             updateValues();
@@ -283,9 +287,12 @@ public class ProgrammerController implements KeyPressable {
                 case "÷" -> longResult = (longNumber2 != 0) ? longNumber1 / longNumber2 : null;
             }
 
-            result = convertLongToString(longResult, mode);
-
-            displayOperationAndResult();
+            if (longResult != null) {
+                result = convertLongToString(longResult, mode);
+                displayOperationAndResult();
+            } else {
+                manageErrorDividingBy0();
+            }
         }
     }
 
@@ -331,10 +338,11 @@ public class ProgrammerController implements KeyPressable {
         String number = "0";
 
         switch (mode) {
-            case DECIMAL -> number = UTILS.formatNumber(String.valueOf(longNumber), 3, ".");
-            case BINARY -> number = UTILS.formatNumber(Long.toBinaryString(longNumber), 4, " ");
-            case HEXADECIMAL -> number = UTILS.formatNumber(Long.toHexString(longNumber).toUpperCase(), 4, " ");
-            case OCTAL -> number = UTILS.formatNumber(Long.toOctalString(longNumber), 3, " ");
+            case DECIMAL -> number = UTILS.formatNumberWithSpaces(String.valueOf(longNumber), 3, ".");
+            case BINARY -> number = UTILS.formatNumberWithSpaces(Long.toBinaryString(longNumber), 4, " ");
+            case HEXADECIMAL ->
+                    number = UTILS.formatNumberWithSpaces(Long.toHexString(longNumber).toUpperCase(), 4, " ");
+            case OCTAL -> number = UTILS.formatNumberWithSpaces(Long.toOctalString(longNumber), 3, " ");
         }
 
         return number;
@@ -342,5 +350,12 @@ public class ProgrammerController implements KeyPressable {
 
     private static String removeSpacesAndPoints(String number) {
         return number.replaceAll("\\s|\\.", "");
+    }
+
+    private void manageErrorDividingBy0() {
+        resultLabel.setText(Messages.get("text.errorDividingBy0"));
+        expressionLabel.setText("");
+        errorDividingBy0 = true;
+        restartValues();
     }
 }

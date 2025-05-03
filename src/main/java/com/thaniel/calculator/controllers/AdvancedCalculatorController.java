@@ -82,7 +82,13 @@ public class AdvancedCalculatorController extends CalculatorController {
                 }
             }
 
-            displayFormattedOperation();
+            if (result != null) {
+                result = Utils.getInstance().round(result, 10);
+                displayFormattedOperation();
+            } else {
+                manageErrorDividingBy0();
+            }
+
             restartValues();
         }
     }
@@ -90,7 +96,8 @@ public class AdvancedCalculatorController extends CalculatorController {
     @Override
     protected void displayFormattedOperation() {
         String resultFormatted = UTILS.formatNumber(result);
-        resultLabel.setText(String.valueOf(resultFormatted).replace(".", ","));
+        resultLabel.setText(resultFormatted);
+        //resultLabel.setText(String.valueOf(resultFormatted).replace(".", ","));
 
         operation = UTILS.formatOperation(operation);
         String num1Formatted = UTILS.formatNumber(num1);
@@ -109,10 +116,11 @@ public class AdvancedCalculatorController extends CalculatorController {
 
     @Override
     protected void handleOperation(String operator) {
-        if ((operation == null) && (expressionLabel.getText().isEmpty() || equalsButtonClicked)) {
+        if ((operation == null) && (expressionLabel.getText().isEmpty() || equalsButtonClicked) && !errorDividingBy0) {
             operation = operator;
 
-            num1 = Double.parseDouble(resultLabel.getText().replace(",", "."));
+            String result = resultLabel.getText().replace(".", "");
+            num1 = Double.parseDouble(result.replace(",", "."));
 
             String num1Formatted = UTILS.formatNumber(num1);
             String formattedOperator = UTILS.formatOperation(operator);

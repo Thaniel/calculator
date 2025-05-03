@@ -2,6 +2,7 @@ package com.thaniel.calculator.utils;
 
 
 import java.util.List;
+import java.util.Locale;
 
 public class Utils {
 
@@ -18,11 +19,19 @@ public class Utils {
     }
 
     public String formatNumber(double number) {
+        String numberFormatted;
+
         if (number == (long) number) {
-            return String.format("%d", (long) number);
+            numberFormatted = formatNumberWithSpaces(Long.toString((long) number),3, ".");
         } else {
-            return String.format("%s", number).replace(".", ",");
+            String[] parts = String.format(Locale.US, "%.15f", number).replace(".", ",").split(",");
+            String intPart = formatNumberWithSpaces(parts[0], 3, ".");
+            String decimals = parts[1].replaceAll("0+$", "");
+
+            numberFormatted = intPart + (decimals.isEmpty() ? "" : "," + decimals);
         }
+
+        return numberFormatted;
     }
 
     /*
@@ -50,7 +59,7 @@ public class Utils {
     /*
      * Format numbers in hexadecimal, octal, binary and decimal with spaces or points
      */
-    public String formatNumber(String value, int groupSize, String separator) {
+    public String formatNumberWithSpaces(String value, int groupSize, String separator) {
         StringBuilder formatted = new StringBuilder();
         int length = value.length();
         int remainder = length % groupSize;
@@ -76,5 +85,13 @@ public class Utils {
         }
 
         return result;
+    }
+
+    /*
+     * Round a number to 10 decimal places
+     */
+    public double round(double value, int places) {
+        double scale = Math.pow(10, places);
+        return Math.round(value * scale) / scale;
     }
 }

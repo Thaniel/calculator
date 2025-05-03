@@ -2,6 +2,7 @@ package com.thaniel.calculator.controllers;
 
 
 import com.thaniel.calculator.interfaces.KeyPressable;
+import com.thaniel.calculator.utils.Messages;
 import com.thaniel.calculator.utils.Utils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -24,6 +25,7 @@ public abstract class CalculatorController implements KeyPressable {
     protected Double result = null;
     protected boolean equalsButtonClicked;
     protected static MainViewController mainViewController;
+    protected boolean errorDividingBy0 = false;
 
     @FXML
     public abstract void initialize();
@@ -74,7 +76,7 @@ public abstract class CalculatorController implements KeyPressable {
 
     @Override
     public void onKeyPressed(KeyEvent keyEvent) {
-        if(keyEvent != null){
+        if (keyEvent != null) {
             System.out.println("Key pressed: " + keyEvent.getCode() + " (" + keyEvent.getText() + ")");
 
             KeyCode keyCode = keyEvent.getCode();
@@ -109,6 +111,7 @@ public abstract class CalculatorController implements KeyPressable {
                 String currentText = resultLabel.getText();
                 resultLabel.setText(currentText.equals("0") ? number : currentText + number);
             }
+            errorDividingBy0 = false;
         }
     }
 
@@ -132,14 +135,20 @@ public abstract class CalculatorController implements KeyPressable {
                 case "%" -> result = num2 * num1 / 100;
             }
 
-            displayFormattedOperation();
+            if (result != null) {
+                result = Utils.getInstance().round(result, 10);
+                displayFormattedOperation();
+            }else {
+                manageErrorDividingBy0();
+            }
+
             restartValues();
         }
     }
 
     protected void displayFormattedOperation() {
         String resultFormatted = UTILS.formatNumber(result);
-        resultLabel.setText(resultFormatted.replace(".", ","));
+        resultLabel.setText(resultFormatted);
 
         String num1Formatted = UTILS.formatNumber(num1);
         String num2Formatted = UTILS.formatNumber(num2);
@@ -153,10 +162,11 @@ public abstract class CalculatorController implements KeyPressable {
     }
 
     protected void handleOperation(String operator) {
-        if ((operation == null) && (expressionLabel.getText().isEmpty() || equalsButtonClicked)) {
+        if ((operation == null) && (expressionLabel.getText().isEmpty() || equalsButtonClicked) && !errorDividingBy0) {
             operation = operator;
 
-            num1 = Double.parseDouble(resultLabel.getText().replace(",", "."));
+            String result = resultLabel.getText().replace(".", "");
+            num1 = Double.parseDouble(result.replace(",", "."));
 
             String num1Formatted = UTILS.formatNumber(num1);
             expressionLabel.setText(num1Formatted + " " + operator);
@@ -164,5 +174,11 @@ public abstract class CalculatorController implements KeyPressable {
 
             equalsButtonClicked = false;
         }
+    }
+
+    protected void manageErrorDividingBy0() {
+        resultLabel.setText(Messages.get("text.errorDividingBy0"));
+        expressionLabel.setText("");
+        errorDividingBy0 = true;
     }
 }
