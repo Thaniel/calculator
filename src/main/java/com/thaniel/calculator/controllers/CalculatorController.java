@@ -11,6 +11,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public abstract class CalculatorController implements KeyPressable {
     @FXML
     protected Label expressionLabel;
@@ -20,9 +23,9 @@ public abstract class CalculatorController implements KeyPressable {
     protected static final Utils UTILS = Utils.getInstance();
 
     protected String operation;
-    protected Double num1 = null;
-    protected Double num2 = null;
-    protected Double result = null;
+    protected BigDecimal num1 = null;
+    protected BigDecimal num2 = null;
+    protected BigDecimal result = null;
     protected boolean equalsButtonClicked;
     protected static MainViewController mainViewController;
     protected boolean errorDividingBy0 = false;
@@ -125,18 +128,17 @@ public abstract class CalculatorController implements KeyPressable {
     protected void handleCalculate() {
         if (operation != null && num1 != null && !resultLabel.getText().isEmpty()) {
             equalsButtonClicked = true;
-            num2 = Double.parseDouble(resultLabel.getText().replace(",", "."));
+            num2 = new BigDecimal(resultLabel.getText().replace(",", "."));
 
             switch (operation) {
-                case "+" -> result = num1 + num2;
-                case "-" -> result = num1 - num2;
-                case "×" -> result = num1 * num2;
-                case "÷" -> result = (num2 != 0) ? num1 / num2 : null;
-                case "%" -> result = num2 * num1 / 100;
+                case "+" -> result = num1.add(num2);
+                case "-" -> result = num1.subtract(num2);
+                case "×" -> result = num1.multiply(num2);
+                case "÷" -> result = num2.compareTo(BigDecimal.ZERO) != 0 ? num1.divide(num2, 10, RoundingMode.HALF_UP) : null;
+                case "%" -> result = num1.multiply(num2).divide(new BigDecimal("100"), 10, RoundingMode.HALF_UP);
             }
 
             if (result != null) {
-                result = Utils.getInstance().round(result, 10);
                 displayFormattedOperation();
             }else {
                 manageErrorDividingBy0();
@@ -166,9 +168,9 @@ public abstract class CalculatorController implements KeyPressable {
             operation = operator;
 
             String result = resultLabel.getText().replace(".", "");
-            num1 = Double.parseDouble(result.replace(",", "."));
+            num1 = new BigDecimal(result.replace(",", "."));
 
-            String num1Formatted = UTILS.formatNumber(num1);
+            String num1Formatted = num1.toString(); //UTILS.formatNumber(num1);
             expressionLabel.setText(num1Formatted + " " + operator);
             resultLabel.setText("");
 

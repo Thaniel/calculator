@@ -1,13 +1,15 @@
 package com.thaniel.calculator.utils;
 
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Locale;
 
 public class Utils {
 
     public static final List<String> BINARY_OPERATIONS = List.of("+", "-", "×", "÷", "%", "mod", "exp", "xʸ");
-
+    private static final BigDecimal UPPER_LIMIT = new BigDecimal("1000000000");
+    private static final BigDecimal LOWER_LIMIT = new BigDecimal("0.0000001");
     private static Utils instance;
 
     public static Utils getInstance() {
@@ -18,17 +20,44 @@ public class Utils {
         return instance;
     }
 
-    public String formatNumber(double number) {
+    public String formatNumberOld(BigDecimal number) {
         String numberFormatted;
 
-        if (number == (long) number) {
-            numberFormatted = formatNumberWithSpaces(Long.toString((long) number),3, ".");
+        if (number.stripTrailingZeros().scale() <= 0) {
+            numberFormatted = formatNumberWithSpaces(number.stripTrailingZeros().toPlainString(), 3, ".");
         } else {
             String[] parts = String.format(Locale.US, "%.15f", number).replace(".", ",").split(",");
             String intPart = formatNumberWithSpaces(parts[0], 3, ".");
             String decimals = parts[1].replaceAll("0+$", "");
 
             numberFormatted = intPart + (decimals.isEmpty() ? "" : "," + decimals);
+        }
+
+        return numberFormatted;
+    }
+
+    /*
+     * Format a Number:
+     *  - Use scientific notation if very large or very small (but ≠ 0)
+     *  - Separate the number every 3 digits with a "."
+     *  - Usa "," to separate decimal part
+     */
+    public String formatNumber(BigDecimal number) {
+        BigDecimal absNumber = number.abs();
+        String numberFormatted;
+
+        if ((absNumber.compareTo(UPPER_LIMIT) >= 0 || absNumber.compareTo(LOWER_LIMIT) < 0) && number.compareTo(BigDecimal.ZERO) != 0) {
+            numberFormatted = number.stripTrailingZeros().toEngineeringString().replace(".", ",");
+        } else {
+            if (number.stripTrailingZeros().scale() <= 0) {
+                numberFormatted = formatNumberWithSpaces(number.stripTrailingZeros().toPlainString(), 3, ".");
+            } else {
+                String[] parts = String.format(Locale.US, "%.15f", number).replace(".", ",").split(",");
+                String intPart = formatNumberWithSpaces(parts[0], 3, ".");
+                String decimals = parts[1].replaceAll("0+$", "");
+
+                numberFormatted = intPart + (decimals.isEmpty() ? "" : "," + decimals);
+            }
         }
 
         return numberFormatted;
@@ -85,13 +114,5 @@ public class Utils {
         }
 
         return result;
-    }
-
-    /*
-     * Round a number to 10 decimal places
-     */
-    public double round(double value, int places) {
-        double scale = Math.pow(10, places);
-        return Math.round(value * scale) / scale;
     }
 }

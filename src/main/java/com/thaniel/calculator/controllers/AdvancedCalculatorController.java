@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import org.apache.commons.math3.special.Gamma;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 
@@ -54,36 +56,36 @@ public class AdvancedCalculatorController extends CalculatorController {
             equalsButtonClicked = true;
 
             if (!resultLabel.getText().isEmpty()) {
-                num2 = Double.parseDouble(resultLabel.getText().replace(",", "."));
+                num2 = new BigDecimal(resultLabel.getText().replace(",", "."));
 
                 switch (operation) {
-                    case "+" -> result = num1 + num2;
-                    case "-" -> result = num1 - num2;
-                    case "×" -> result = num1 * num2;
-                    case "÷" -> result = (num2 != 0) ? num1 / num2 : null;
-                    case "%" -> result = num2 * num1 / 100;
-                    case "mod" -> result = num1 % num2;
-                    case "exp" -> result = (num1 * Math.pow(10, num2));
-                    case "xʸ" -> result = Math.pow(num1, num2);
+                    case "+" -> result = num1.add(num2);
+                    case "-" -> result = num1.subtract(num2);
+                    case "×" -> result = num1.multiply(num2);
+                    case "÷" -> result = num2.compareTo(BigDecimal.ZERO) != 0 ? num1.divide(num2, 10, RoundingMode.HALF_UP) : null;
+                    case "%" -> result = num1.multiply(num2).divide(new BigDecimal("100"), 10, RoundingMode.HALF_UP);
+                    case "mod" -> result = num1.remainder(num2);
+                    case "exp" -> result = num1.multiply(BigDecimal.TEN.pow(num2.intValue())); //TODO Round num2
+                    case "xʸ" -> result = BigDecimal.valueOf(Math.pow(num1.doubleValue(), num2.doubleValue()));
                 }
             } else {
                 switch (operation) {
-                    case "n!" -> result = factorial(num1);
-                    case "sin" -> result = Math.sin(Math.toRadians(num1));
-                    case "cos" -> result = Math.cos(Math.toRadians(num1));
-                    case "tan" -> result = Math.tan(Math.toRadians(num1));
-                    case "x²" -> result = Math.pow(num1, num2 = 2.0);
-                    case "√" -> result = Math.sqrt(num1);
-                    case "log" -> result = Math.log10(num1);
-                    case "ln" -> result = Math.log(num1);
-                    case "|x|" -> result = Math.abs(num1);
-                    case "eˣ" -> result = Math.exp(num1);
-                    case "10ˣ" -> result = Math.pow(10, num1);
+                    case "n!" -> result = BigDecimal.valueOf(factorial(num1.doubleValue()));
+                    case "sin" -> result = BigDecimal.valueOf(Math.sin(Math.toRadians(num1.doubleValue())));
+                    case "cos" -> result = BigDecimal.valueOf(Math.cos(Math.toRadians(num1.doubleValue())));
+                    case "tan" -> result = BigDecimal.valueOf(Math.tan(Math.toRadians(num1.doubleValue())));
+                    case "x²" -> result = num1.pow(2);
+                    case "√" -> result = BigDecimal.valueOf(Math.sqrt(num1.doubleValue()));
+                    case "log" -> result = BigDecimal.valueOf(Math.log10(num1.doubleValue()));
+                    case "ln" -> result = BigDecimal.valueOf(Math.log(num1.doubleValue()));
+                    case "|x|" -> result = BigDecimal.valueOf(Math.abs(num1.doubleValue()));
+                    case "eˣ" -> result = BigDecimal.valueOf(Math.exp(num1.doubleValue()));
+                    case "10ˣ" -> result = BigDecimal.valueOf(Math.pow(10, num1.doubleValue()));
                 }
             }
 
             if (result != null) {
-                result = Utils.getInstance().round(result, 10);
+                //result = Utils.getInstance().round(result, 10);
                 displayFormattedOperation();
             } else {
                 manageErrorDividingBy0();
@@ -97,7 +99,6 @@ public class AdvancedCalculatorController extends CalculatorController {
     protected void displayFormattedOperation() {
         String resultFormatted = UTILS.formatNumber(result);
         resultLabel.setText(resultFormatted);
-        //resultLabel.setText(String.valueOf(resultFormatted).replace(".", ","));
 
         operation = UTILS.formatOperation(operation);
         String num1Formatted = UTILS.formatNumber(num1);
@@ -120,9 +121,9 @@ public class AdvancedCalculatorController extends CalculatorController {
             operation = operator;
 
             String result = resultLabel.getText().replace(".", "");
-            num1 = Double.parseDouble(result.replace(",", "."));
+            num1 = new BigDecimal(result.replace(",", "."));
 
-            String num1Formatted = UTILS.formatNumber(num1);
+            String num1Formatted = num1.toString();
             String formattedOperator = UTILS.formatOperation(operator);
 
             resultLabel.setText("");
