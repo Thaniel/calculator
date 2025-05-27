@@ -207,11 +207,18 @@ public class ProgrammerController implements KeyPressable {
 
     private void insertDigit(String digit) {
         if (isValidForMode(digit)) {
-            if (operation == null) {
-                num1 = (Objects.equals(num1, "0")) ? digit.toUpperCase() : num1 + digit.toUpperCase();
-            } else {
-                num2 = (Objects.equals(num2, "0")) ? digit.toUpperCase() : num2 + digit.toUpperCase();
+            if (equalsButtonClicked) {
+                restartValues();
+                equalsButtonClicked = false;
+                num1 = digit.toUpperCase();
+            }else{
+                if (operation == null) {
+                    num1 = (Objects.equals(num1, "0")) ? digit.toUpperCase() : num1 + digit.toUpperCase();
+                } else {
+                    num2 = (Objects.equals(num2, "0")) ? digit.toUpperCase() : num2 + digit.toUpperCase();
+                }
             }
+
 
             updateValues();
 
